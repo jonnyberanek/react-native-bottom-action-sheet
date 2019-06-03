@@ -27,31 +27,23 @@ public class BottomActionSheetModule extends ReactContextBaseJavaModule {
 
   /* https://facebook.github.io/react-native/docs/actionsheetios
      static showActionSheetWithOptions(options, callback)
-
-    Display an iOS action sheet. The options object must contain one or more of:
-
-    options (array of strings) - a list of button titles (required)
-    cancelButtonIndex (int) - index of cancel button in options
-    destructiveButtonIndex (int) - index of destructive button in options
-    title (string) - a title to show above the action sheet
-    message (string) - a message to show below the title
-    anchor (number) - the node to which the action sheet should be anchored (used for iPad)
-    tintColor (string) - the color used for non-destructive button titles
-
-    The 'callback' function takes one parameter, the zero-based index of the selected item.
   */
-
   @ReactMethod
   public void showActionSheetWithOptions(ReadableMap options, final Callback callback) {
 
+    // Pull out list of options as ArrayList
     ArrayList<Object> optionsList = options.getArray("options").toArrayList();
-    // cancel & destructive button indeces matter to android's bottom sheet design pattern
+    // TODO: add functionality for title & message
     //String title = options.getString("title");
     //String message = options.getString("message");
+    
+    // cancel & destructive button indeces do not matter to android's bottom sheet design pattern
     // anchor and tintColor is irrelevant to android
 
+    // Instantiates a new action sheet dialog
     final ListBottomSheetDialog actionSheet = new ListBottomSheetDialog(getCurrentActivity());
 
+    // Set choices and for the items to act accordingly to callback on click
     actionSheet.setChoices(optionsList.toArray(new String[0]));
     actionSheet.setOnItemClickListener(new ListBottomSheetDialog.OnItemClickListener(){
       @Override
@@ -62,19 +54,9 @@ public class BottomActionSheetModule extends ReactContextBaseJavaModule {
     });
 
     // TODO: add functionality for title and description
-
+    
+    // Display ActionSheet on screen
     actionSheet.show();
-
-    // try{
-    //     final FragmentActivity activity = (FragmentActivity) getReactApplicationContext().getApplicationContext();
-    //
-    //     actionSheet.show(activity.getSupportFragmentManager(), getName().concat("Fragment"));
-    //
-    // } catch (ClassCastException e) {
-    //   throw e;
-    // }
-    //
-
 
   }
 
