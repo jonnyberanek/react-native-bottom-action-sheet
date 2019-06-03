@@ -19,12 +19,12 @@ public class ListBottomSheetDialog extends BottomSheetDialog {
         void onItemClick(int position);
     }
 
-    String[] mChoices;    
+    String[] mChoices;
     ListView mListView;
 
     public ListBottomSheetDialog(@NonNull Context context) {
         super(context);
-        
+
         mListView = new ListView(context);
         mListView.setDivider(null);
         mListView.setDividerHeight(0);
@@ -35,7 +35,7 @@ public class ListBottomSheetDialog extends BottomSheetDialog {
     }
 
     public void setOnItemClickListener(final OnItemClickListener listener) {
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 listener.onItemClick(position);
@@ -46,9 +46,9 @@ public class ListBottomSheetDialog extends BottomSheetDialog {
     @Override
     public void show() {
         ArrayAdapter adapter = new ArrayAdapter(getContext(), R.layout.sheet_item, mChoices);
-        listView.setAdapter(adapter);
+        mListView.setAdapter(adapter);
 
-        setContentView(listView);
+        setContentView(mListView);
 
         super.show();
     }
