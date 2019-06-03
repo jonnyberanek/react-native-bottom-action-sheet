@@ -1,7 +1,8 @@
 
 # react-native-bottom-action-sheet
 
-A node javascript library which provides an Android implementation of ActionSheetIOS for React Native.
+A node javascript library which provides an Android implementation of ActionSheetIOS for React Native. Adheres to Material Design guidelines for a basic list bottom sheet 
+
 Originally inspired from: https://github.com/yfuks/react-native-action-sheet
 
 ### Setting up
@@ -16,3 +17,8 @@ Just like ActionSheetIOS: https://facebook.github.io/react-native/docs/actionshe
 ### TODO
 
  - Enable title and title description
+ 
+ 
+##### Contact me!
+
+If you have any questions about the repository feel free to contact me!
