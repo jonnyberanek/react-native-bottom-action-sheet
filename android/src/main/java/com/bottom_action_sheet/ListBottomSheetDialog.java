@@ -20,10 +20,14 @@ public class ListBottomSheetDialog extends BottomSheetDialog {
     }
 
     String[] mChoices;
-    AdapterView.OnItemClickListener mListener;
+    ListView mListView;
 
     public ListBottomSheetDialog(@NonNull Context context) {
         super(context);
+
+        mListView = new ListView(context);
+        mListView.setDivider(null);
+        mListView.setDividerHeight(0);
     }
 
     public void setChoices(String[] choices){
@@ -31,27 +35,20 @@ public class ListBottomSheetDialog extends BottomSheetDialog {
     }
 
     public void setOnItemClickListener(final OnItemClickListener listener) {
-        mListener = new AdapterView.OnItemClickListener() {
+        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 listener.onItemClick(position);
             }
-        };
+        });
     }
 
     @Override
     public void show() {
-
-        ListView listView = new ListView(getContext());
-        listView.setDivider(null);
-        listView.setDividerHeight(0);
-
         ArrayAdapter adapter = new ArrayAdapter(getContext(), R.layout.sheet_item, mChoices);
+        mListView.setAdapter(adapter);
 
-        listView.setAdapter(adapter);
-        listView.setOnItemClickListener(mListener);
-
-        setContentView(listView);
+        setContentView(mListView);
 
         super.show();
     }
